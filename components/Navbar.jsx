@@ -1,45 +1,94 @@
+"use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-        {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-primary">
-          Redith Group
+    <header className="sticky top-0 left-0 w-full bg-white shadow z-10">
+      <div className="custom-container mx-auto flex items-center justify-between px-6 py-6">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo--1.png" // update the path
+            alt="Redith Group"
+            width={150}
+            height={100}
+            className="object-contain"
+            priority
+          />
         </Link>
 
-        {/* Hamburger */}
-        <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
-          ☰
+        {/* Mobile Button */}
+        <button className="md:hidden text-3xl z-50" onClick={() => setOpen(!open)}>
+          {open ? <HiOutlineX /> : <HiOutlineMenu />}
         </button>
 
-        {/* Menu */}
-        <nav
-          className={`${
-            open ? "block" : "hidden"
-          } md:flex gap-6 text-sm font-medium`}
-        >
+        {/* Desktop Menu */}
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <Link href="/about" className="hover:text-primary">
+            About
+          </Link>
+
+          {/* Dropdown */}
+          <div className="group relative">
+            <button className="hover:text-primary flex items-center gap-1">
+              SBUs ▾
+            </button>
+            <div className="absolute left-0 top-full mt-2 w-44 bg-white shadow-lg rounded-md p-3 hidden group-hover:block">
+              {[
+                ["Digital & IT", "/sbu/digital-it"],
+                ["Consumer Brands", "/sbu/consumer-brands"],
+                ["Agribusiness", "/sbu/agribusiness"],
+                ["Retail Chain", "/sbu/retail"],
+              ].map(([label, path]) => (
+                <Link
+                  key={path}
+                  href={path}
+                  className="block px-2 py-1 rounded hover:bg-gray-100"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <Link href="/sustainability" className="hover:text-primary">
+            CSR
+          </Link>
+          <Link href="/leadership" className="hover:text-primary">
+            Leadership
+          </Link>
+          <Link href="/presence" className="hover:text-primary">
+            Presence
+          </Link>
+          <Link href="/why-redith" className="hover:text-primary">
+            Why Redith
+          </Link>
+          <Link href="/contact" className="hover:text-primary">
+            Contact
+          </Link>
+        </nav>
+      </div>
+
+      {/* Mobile Menu Slider */}
+      <div
+        className={`md:hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg p-6 transform transition-transform duration-300 ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col gap-4 text-base font-medium mt-12">
           <Link href="/about">About</Link>
 
-          <div className="group relative cursor-pointer">
-            <span className="md:pb-6">SBUs ▾</span>
-            <div className="absolute hidden group-hover:block bg-white shadow p-4 rounded">
-              <Link href="/sbu/digital-it" className="block">
-                Digital & IT
-              </Link>
-              <Link href="/sbu/consumer-brands" className="block">
-                Consumer Brands
-              </Link>
-              <Link href="/sbu/agribusiness" className="block">
-                Agribusiness
-              </Link>
-              <Link href="/sbu/retail" className="block">
-                Retail Chain
-              </Link>
+          <div className="border-t pt-3">
+            <p className="font-semibold mb-1">SBUs</p>
+            <div className="flex flex-col gap-2 ml-2">
+              <Link href="/sbu/digital-it">Digital & IT</Link>
+              <Link href="/sbu/consumer-brands">Consumer Brands</Link>
+              <Link href="/sbu/agribusiness">Agribusiness</Link>
+              <Link href="/sbu/retail">Retail Chain</Link>
             </div>
           </div>
 
@@ -48,7 +97,7 @@ export default function Navbar() {
           <Link href="/presence">Presence</Link>
           <Link href="/why-redith">Why Redith</Link>
           <Link href="/contact">Contact</Link>
-        </nav>
+        </div>
       </div>
     </header>
   );

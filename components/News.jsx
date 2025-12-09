@@ -24,7 +24,6 @@ export default function News() {
   return (
     <div>
       <PageHeader title="News & Media" subtitle="Latest updates from Redith" />
-
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {articles.map((article, idx) => (
