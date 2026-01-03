@@ -3,10 +3,10 @@ import PageHeader from "../components/PageHeader";
 export default function About() {
   return (
     <div>
-      <PageHeader
+      {/* <PageHeader
         title="About Redith Group"
         subtitle="Innovation • Progress • Sustainability"
-      />
+      /> */}
 
       <section className="max-w-7xl mx-auto px-6 py-20">
         <p className="leading-relaxed text-gray-700 text-lg">

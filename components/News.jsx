@@ -1,6 +1,6 @@
 import Image from "next/image";
 import PageHeader from "./PageHeader";
-// import PageHeader from "../components/PageHeader";
+
 
 const articles = [
   {
