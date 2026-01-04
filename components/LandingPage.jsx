@@ -147,8 +147,8 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-// import Button from "./Button";
 import Link from "next/link";
+import Button from "./Button";
 
 const heroContent = {
   subheading: "A Leading Multinational Conglomerate of Bangladesh",
@@ -166,11 +166,12 @@ const LandingPage = () => {
         transition={{ duration: 4, ease: "easeOut" }}
         className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{ backgroundImage: `url(${heroContent.image})` }}
-      ></motion.div>
+      />
 
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
       <motion.div
-        className="relative z-0 px-6 flex flex-col items-center justify-center max-w-3xl"
+        className="relative z-10 px-6 flex flex-col items-center justify-center max-w-3xl"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -180,25 +181,30 @@ const LandingPage = () => {
         </p>
 
         <h1 className="text-4xl md:text-6xl font-serif italic font-semibold mb-4">
-          <span className="text-primary">Building the Future</span>{" "}
-          <span className="text-white">Through Innovation & Trust.</span>
+          <span className="text-primary">
+            {heroContent.heading.split(" Through")[0]}
+          </span>{" "}
+          <span className="text-white">
+            Through{heroContent.heading.split(" Through")[1]}
+          </span>
         </h1>
 
         <p className="text-base md:text-lg text-gray-200 leading-relaxed whitespace-pre-line">
           {heroContent.description}
         </p>
 
-        <div className="mt-6 flex gap-4">
-          {/* <Link href="/services">
+        <div className="mt-8 flex gap-4">
+          <Link href="/services">
             <Button variant="primary" size="md">
               Explore More
             </Button>
-          </Link> */}
-          {/* <Link href="/book-now">
+          </Link>
+
+          <Link href="/contact">
             <Button variant="outline" size="md">
-              Book a Visit
+              Contact Us
             </Button>
-          </Link> */}
+          </Link>
         </div>
       </motion.div>
     </div>

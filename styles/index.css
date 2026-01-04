@@ -63,6 +63,16 @@ h3 {
   animation: ripple 1.5s infinite;
 } */
 
+* {
+  cursor: none;
+}
+
+@media (max-width: 768px) {
+  * {
+    cursor: auto;
+  }
+}
+
 .slick-dots {
   position: absolute;
   top: 50%;
